@@ -1,0 +1,98 @@
+// // import twilio = require("twilio")
+
+    let callbtn = document.querySelector("#callbtn");
+
+    let signupBtn = document.querySelector("#signup");
+    
+     callbtn.addEventListener("click", doLogin);
+    
+    // require(['fs'], function (fs){
+    //     console.log('fs is now loaded')
+    // })
+    
+    
+    function doLogin() {
+        let carno = document.querySelector("#carno").value
+        console.log(carno)
+        // console.log(username, pwd);
+    
+        fetch("https://api.jsonbin.io/b/5c39efac7b31f426f8573145/latest")
+        .then(res => res.json()
+        .then(data => checkCredentials(data, carno))
+        )
+    }
+    
+    function checkCredentials(data, carno) {
+        console.log(data)
+        // console.log(carno, phn)
+    
+        for(let i=0; i<data.length; i++){
+             if(carno == data[i].carno ){
+                 phn = data[i].phn;
+//                  const accSid = "AC7461c843aad174daae516d26a92a6e31";
+//      const authToken = "cef7a23385cb5236fc9e6f0151879737";
+//      const client = require('twilio')(accSid, authToken);
+    
+//      client.calls.create(
+//        {
+//         url: 'https://pastebin.com/raw/DVbVckd0',
+//          to: 'phn',
+//          from: '+14695186067',
+//        },
+//        (err, call) => {
+//         if(err){console.log(err);}
+//    else{
+//          console.log(call.sid);
+//        }}
+//      );
+                 console.log(phn);
+                console.log('success')
+                break
+            } else {
+                console.log("invalid credentials")
+                
+            }
+        }
+    }
+    // promise.then(function(call) {
+    //     console.log('Call success! Call SID: '+call.sid);
+    // }, function(error) {
+    //     console.error('Call failed!  Reason: '+error.message);
+    // });
+    const accSid = "AC7461c843aad174daae516d26a92a6e31";
+    const authToken = "cef7a23385cb5236fc9e6f0151879737";
+    const client = require('twilio')(accSid, authToken);
+   
+    client.calls.create(
+      {
+       url: 'https://pastebin.com/raw/DVbVckd0',
+        to: '+919971804516',
+        from: '+14695186067',
+      },
+      (err, call) => {
+       if(err){console.log(err);}
+  else{
+        console.log(call.sid);
+      }}
+    );
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+     
+
+
+  
+
+    
